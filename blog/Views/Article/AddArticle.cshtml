@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "AddArticle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Добавление статьи</h2>
+
+@ViewBag.Message
+
+@using (Html.BeginForm("AddArticle", "Article", FormMethod.Post))
+{
+
+    @Html.TextBox("Title", "Введите заголовок") <br />
+    @Html.TextArea("Description", "Введите описание статьи", 2, 30, null)<br />
+    @Html.TextArea("Text", "Введите текст статьи", 5, 50, null)<br />
+    @Html.Hidden("Rating", "0")
+    <input type="submit" value="Отправить" />
+}
+
+        
+

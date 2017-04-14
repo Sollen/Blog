@@ -1,0 +1,15 @@
+﻿@using WebUI.Models
+@model IQueryable<Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<p>Начало форича</p>
+
+<p>Конец форича</p>
+
+@Html.ActionLink("Добавление статьи", "AddArticle", "Article")
