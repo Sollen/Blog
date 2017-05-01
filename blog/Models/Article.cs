@@ -18,19 +18,28 @@ namespace WebUI.Models
         public string Text { get; set; }
         public int Rating { get; set; }
 
-        public void AddRating(int articleID)
+        public void CalcRating()
         {
             EFDBContext context = new EFDBContext();
             int rating = 0;
-            var AllRating = context.ArticleRatings.Where<ArticleRating>((x) => x.ArticleID.ArticleID == articleID);
+            var AllRating = context.ArticleRatings.Where<ArticleRating>((x) => x.ArticleID.ArticleID == this.ArticleID);
             foreach (var r in AllRating)
             {
                 rating += r.ValueRating;
             }
 
-            context.Articles.Where<Article>((x) => x.ArticleID == articleID).FirstOrDefault().Rating = rating;
+            context.Articles.Where<Article>((x) => x.ArticleID == this.ArticleID).FirstOrDefault().Rating = rating;
             context.SaveChanges();
 
+        }
+
+        public void Assignment(Article newArticle)
+        {
+            this.ArticleID = newArticle.ArticleID;
+            this.Description = newArticle.Description;
+            this.Rating = newArticle.Rating;
+            this.Text = newArticle.Text;
+            this.Title = newArticle.Title;
         }
 
 

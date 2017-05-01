@@ -1,0 +1,25 @@
+﻿@model WebUI.Models.Article
+
+@{
+    ViewBag.Title = "Modifiarticle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("ModifiArticle", "Article", FormMethod.Post))
+{
+
+
+    <p>Заголовок</p>
+    @Html.TextBox("Title", Model.Title) <br />
+    <p>Описание статьи</p>
+    @Html.TextArea("Description", Model.Description, 2, 30, null)<br />
+    <p>Текст статьи</p>
+    @Html.TextArea("Text", Model.Text, 5, 50, null)<br />
+    @Html.Hidden("Rating", Model.Rating)
+    @Html.Hidden("ArticleID", Model.ArticleID)
+
+
+    <input type="submit" value="Отправить" />
+}
+

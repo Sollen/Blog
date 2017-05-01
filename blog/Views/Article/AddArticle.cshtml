@@ -11,10 +11,15 @@
 @using (Html.BeginForm("AddArticle", "Article", FormMethod.Post))
 {
 
-    @Html.TextBox("Title", "Введите заголовок") <br />
-    @Html.TextArea("Description", "Введите описание статьи", 2, 30, null)<br />
-    @Html.TextArea("Text", "Введите текст статьи", 5, 50, null)<br />
+   
+    <p>Введите заголовок</p>
+    @Html.TextBox("Title","") <br />
+    <p>Введите описание статьи</p>
+    @Html.TextArea("Description", "", 2, 30, null)<br />
+    <p>Введите текст статьи</p>
+    @Html.TextArea("Text", "", 5, 50, null)<br />
     @Html.Hidden("Rating", "0")
+   
     <input type="submit" value="Отправить" />
 }
 
