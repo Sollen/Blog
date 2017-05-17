@@ -38,12 +38,17 @@ namespace WebUI.Controllers
             return View(article);
         }
 
+        
 
+        
         private IEnumerable<Article> ArticleOnPage(int page)
         {
+
+            var maxID = context.Articles.Max(Article => Article.ArticleID);
             
-            var article = context.Articles.Where<Article>((x) => x.ArticleID >= (page - 1) * countPage + 1 && x.ArticleID < (page - 1) * countPage + countPage + 1);
-            return article;
+            return context.Articles
+                .Where<Article>((x) => x.ArticleID >= maxID - page  - countPage + 2 && x.ArticleID <= maxID - (page - 1) * (countPage - 1))
+                .OrderByDescending(Article => Article.ArticleID);
         }
 
         private int checkID(int id)

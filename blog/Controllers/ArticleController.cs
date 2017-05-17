@@ -28,7 +28,7 @@ namespace WebUI.Controllers
             context.Articles.Add(newArticle);
             context.SaveChanges();
             ViewBag.Message = "Статья успешно добавленна";
-            return Redirect("Article/AddArticle");
+            return Redirect("AddArticle");
         }
 
         public ViewResult ModifiArticle(int id)
