@@ -17,6 +17,7 @@ namespace WebUI.Models
         public string Description { get; set; }
         public string Text { get; set; }
         public int Rating { get; set; }
+        public DateTime CreateDate { get; set; }
 
         public void CalcRating()
         {
@@ -40,6 +41,7 @@ namespace WebUI.Models
             this.Rating = newArticle.Rating;
             this.Text = newArticle.Text;
             this.Title = newArticle.Title;
+            this.CreateDate = newArticle.CreateDate;
         }
 
 

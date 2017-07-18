@@ -15,5 +15,6 @@ namespace WebUI.Models
         public Article ArticleID { get; set; }
         public int ParrentComment { get; set; }
         public int Rating { get; set; }
+        public DateTime CreateDate { get; set; }
     }
 }

@@ -28,6 +28,8 @@ namespace WebUI.Controllers
         public ViewResult Index(int id = 1)
         {          
             ViewBag.page =id;
+
+            
                         
             return View(ArticleOnPage(checkID(id))); 
         }
@@ -41,14 +43,13 @@ namespace WebUI.Controllers
         
 
         
-        private IEnumerable<Article> ArticleOnPage(int page)
+        private IQueryable<Article> ArticleOnPage(int page)
         {
-
-            var maxID = context.Articles.Max(Article => Article.ArticleID);
+            return context.Articles.OrderByDescending(Article => Article.CreateDate)
+                .Skip<Article>((page-1)*countPage)
+                .Take<Article>(countPage);
             
-            return context.Articles
-                .Where<Article>((x) => x.ArticleID >= maxID - page  - countPage + 2 && x.ArticleID <= maxID - (page - 1) * (countPage - 1))
-                .OrderByDescending(Article => Article.ArticleID);
+
         }
 
         private int checkID(int id)

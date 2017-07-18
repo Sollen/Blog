@@ -25,6 +25,7 @@ namespace WebUI.Controllers
         [HttpPost]
         public RedirectResult AddArticle(Article newArticle)
         {
+            newArticle.CreateDate = DateTime.Now;
             context.Articles.Add(newArticle);
             context.SaveChanges();
             ViewBag.Message = "Статья успешно добавленна";

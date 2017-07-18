@@ -19,7 +19,7 @@ namespace WebUI.Controllers
 
         public JsonResult AddComment(ArticleComment comment)
         {
-
+            comment.CreateDate = DateTime.Now;
             context.ArticleComments.Add(comment);
             context.SaveChanges();
 
