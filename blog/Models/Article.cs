@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using WebUI.Concrete;
 
@@ -12,7 +9,7 @@ namespace WebUI.Models
     public class Article
     {
         [Key]
-        public int ArticleID { get; set; }
+        public int ArticleId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Text { get; set; }
@@ -21,22 +18,22 @@ namespace WebUI.Models
 
         public void CalcRating()
         {
-            EFDBContext context = new EFDBContext();
+            EfdbContext context = new EfdbContext();
             int rating = 0;
-            var AllRating = context.ArticleRatings.Where<ArticleRating>((x) => x.ArticleID.ArticleID == this.ArticleID);
-            foreach (var r in AllRating)
+            var allRating = context.ArticleRatings.Where((x) => x.ArticleId.ArticleId == this.ArticleId);
+            foreach (var r in allRating)
             {
                 rating += r.ValueRating;
             }
 
-            context.Articles.Where<Article>((x) => x.ArticleID == this.ArticleID).FirstOrDefault().Rating = rating;
+            context.Articles.Where((x) => x.ArticleId == this.ArticleId).FirstOrDefault().Rating = rating;
             context.SaveChanges();
 
         }
 
         public void Assignment(Article newArticle)
         {
-            this.ArticleID = newArticle.ArticleID;
+            this.ArticleId = newArticle.ArticleId;
             this.Description = newArticle.Description;
             this.Rating = newArticle.Rating;
             this.Text = newArticle.Text;

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using WebUI.Concrete;
 using WebUI.Models;
@@ -10,11 +7,11 @@ namespace WebUI.Controllers
 {
     public class ArticleController : Controller
     {
-        public EFDBContext context;
+        public EfdbContext Context;
 
         public ArticleController()
         {
-            context = new EFDBContext();
+            Context = new EfdbContext();
         }
         public ViewResult AddArticle()
         {
@@ -26,15 +23,15 @@ namespace WebUI.Controllers
         public RedirectResult AddArticle(Article newArticle)
         {
             newArticle.CreateDate = DateTime.Now;
-            context.Articles.Add(newArticle);
-            context.SaveChanges();
+            Context.Articles.Add(newArticle);
+            Context.SaveChanges();
             ViewBag.Message = "Статья успешно добавленна";
             return Redirect("AddArticle");
         }
 
         public ViewResult ModifiArticle(int id)
         {
-            var article = context.Articles.Find(id);
+            var article = Context.Articles.Find(id);
 
             return View(article);
 
@@ -43,18 +40,17 @@ namespace WebUI.Controllers
         [HttpPost]
         public RedirectToRouteResult ModifiArticle(Article modifiArticle)
         {
+            var article = Context.Articles.Find(modifiArticle.ArticleId);
+
+            article.Assignment(modifiArticle);
 
 
-
-            context.Articles.Find(modifiArticle.ArticleID).Assignment(modifiArticle);
-            
-
-            context.SaveChanges();
+            Context.SaveChanges();
 
             return RedirectToRoute(new {
-                controller = "Home",
-                action = "Single",
-                id = modifiArticle.ArticleID
+                controller = $"Home",
+                action = $"Single",
+                id = modifiArticle.ArticleId
 
             });
         }

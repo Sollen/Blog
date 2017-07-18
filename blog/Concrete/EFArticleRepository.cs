@@ -4,13 +4,13 @@ using WebUI.Models;
 
 namespace WebUI.Concrete
 {
-    public class EFArticleRepository : IArticleRepository
+    public class EfArticleRepository : IArticleRepository
     {
-        EFDBContext context = new EFDBContext();
+        EfdbContext _context = new EfdbContext();
 
         public IEnumerable<Article> Articles
         {
-            get { return context.Articles; }
+            get { return _context.Articles; }
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using WebUI.Concrete;
 using WebUI.Models;
@@ -10,25 +8,25 @@ namespace WebUI.Controllers
 {
     public class CommentController : Controller
     {
-        public EFDBContext context;
+        public EfdbContext Context;
         public CommentController()
         {
-            context = new EFDBContext();
+            Context = new EfdbContext();
         }
 
 
         public JsonResult AddComment(ArticleComment comment)
         {
             comment.CreateDate = DateTime.Now;
-            context.ArticleComments.Add(comment);
-            context.SaveChanges();
+            Context.ArticleComments.Add(comment);
+            Context.SaveChanges();
 
             return Json(new { succes = "true"});
         }
 
-        public JsonResult GetComment(int ArticleID, int LastCommentID = 0)
+        public JsonResult GetComment(int articleId, int lastCommentId = 0)
         {
-            var comments = context.ArticleComments.Where<ArticleComment>((x) => x.ArticleID.ArticleID == ArticleID && x.CommentID > LastCommentID);
+            var comments = Context.ArticleComments.Where((x) => x.ArticleId.ArticleId == articleId && x.CommentId > lastCommentId);
             return Json(comments);
         }
     }

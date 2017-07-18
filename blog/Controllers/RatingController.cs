@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using WebUI.Concrete;
 using WebUI.Models;
 
@@ -10,22 +6,24 @@ namespace WebUI.Controllers
 {
     public class RatingController : Controller
     {
-        public EFDBContext context;
+        public EfdbContext Context;
         public RatingController()
         {
-            context = new EFDBContext();
+            Context = new EfdbContext();
         }
         public JsonResult AddRating(int id, int rating)
         {
-            ArticleRating articleRating = new ArticleRating();
-            articleRating.ArticleID = context.Articles.Find(id);
-            articleRating.ValueRating = rating;
+            var articleRating = new ArticleRating
+            {
+                ArticleId = Context.Articles.Find(id),
+                ValueRating = rating
+            };
 
-            context.ArticleRatings.Add(articleRating);
-            context.SaveChanges();
-            context.Articles.Find(id).CalcRating();
+            Context.ArticleRatings.Add(articleRating);
+            Context.SaveChanges();
+            Context.Articles.Find(id).CalcRating();
 
-            return Json(new { newrating = context.Articles.Find(id).Rating, succes = "true" });
+            return Json(new { newrating = Context.Articles.Find(id).Rating, succes = "true" });
 
 
         }
@@ -34,7 +32,7 @@ namespace WebUI.Controllers
         {
 
 
-            return Json(new { articleID = id, rating = context.Articles.Find(id).Rating});
+            return Json(new { articleID = id, rating = Context.Articles.Find(id).Rating});
 
         }
 

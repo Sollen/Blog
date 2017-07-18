@@ -13,12 +13,10 @@
 {
     <p>@article.Title</p><br />
     
-    @Html.ActionLink("Посмотреть", "Single", "Home", new { id = article.ArticleID }, null)
+    @Html.ActionLink("Посмотреть", "Single", "Home", new { id = article.ArticleId }, null)
     <br />
     
-
-    @Html.ActionLink("Изменить", "ModifiArticle", "Article", new { id = article.ArticleID }, null);
-
+    @Html.ActionLink("Изменить", "ModifiArticle", "Article", new { id = article.ArticleId }, null)
 }
 
 

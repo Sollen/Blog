@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using WebUI.Abstract;
 using WebUI.Models;
 
 namespace WebUI.Concrete
 {
-    public class EFArticleCommentRepository : IArticleCommentRepository
+    public class EfArticleCommentRepository : IArticleCommentRepository
     {
-        EFDBContext context = new EFDBContext();
+        EfdbContext _context = new EfdbContext();
 
         public IEnumerable<ArticleComment> ArticleComments
         {
-            get { return context.ArticleComments; }
+            get { return _context.ArticleComments; }
         }
     }
 }

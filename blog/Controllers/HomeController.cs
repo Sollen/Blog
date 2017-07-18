@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using WebUI.Concrete;
 using WebUI.Models;
@@ -12,13 +9,13 @@ namespace WebUI.Controllers
     public class HomeController : Controller
     {
 
-        public EFDBContext context;
-        public int countPage = 3;
+        public EfdbContext Context;
+        public int CountPage = 3;
 
 
         public HomeController()
         {
-            context = new EFDBContext();
+            Context = new EfdbContext();
             
             
 
@@ -31,12 +28,12 @@ namespace WebUI.Controllers
 
             
                         
-            return View(ArticleOnPage(checkID(id))); 
+            return View(ArticleOnPage(CheckId(id))); 
         }
 
         public ViewResult Single(int id)
         {
-            var article = context.Articles.Find(id);
+            var article = Context.Articles.Find(id);
             return View(article);
         }
 
@@ -45,31 +42,24 @@ namespace WebUI.Controllers
         
         private IQueryable<Article> ArticleOnPage(int page)
         {
-            return context.Articles.OrderByDescending(Article => Article.CreateDate)
-                .Skip<Article>((page-1)*countPage)
-                .Take<Article>(countPage);
+            return Context.Articles.OrderByDescending(article => article.CreateDate)
+                .Skip((page-1)*CountPage)
+                .Take(CountPage);
             
 
         }
 
-        private int checkID(int id)
+       private int CheckId(int id)
         {
-            int outPage;
             int lastPage;
 
-            if ( id <= 0) {
-                outPage = 1;
+            var outPage = id <= 0 ? 1 : id;
+
+            if (Context.Articles.Count() % CountPage == 0) {
+                lastPage = Context.Articles.Count() / CountPage;
             }
             else{
-                outPage = id;
-            }
-
-
-            if (context.Articles.Count() % countPage == 0) {
-                lastPage = context.Articles.Count() / countPage;
-            }
-            else{
-                lastPage = (context.Articles.Count() / countPage) + 1;
+                lastPage = (Context.Articles.Count() / CountPage) + 1;
             }
 
             if (outPage > lastPage) {outPage = lastPage; }
@@ -78,7 +68,7 @@ namespace WebUI.Controllers
             return outPage;
         }
 
-
+    
         
     }
 }
