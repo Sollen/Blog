@@ -20,25 +20,25 @@ namespace WebUI.Models
         {
             EfdbContext context = new EfdbContext();
             int rating = 0;
-            var allRating = context.ArticleRatings.Where((x) => x.ArticleId.ArticleId == this.ArticleId);
+            var allRating = context.ArticleRatings.Where((x) => x.ArticleId.ArticleId == ArticleId);
             foreach (var r in allRating)
             {
                 rating += r.ValueRating;
             }
 
-            context.Articles.Where((x) => x.ArticleId == this.ArticleId).FirstOrDefault().Rating = rating;
+            context.Articles.FirstOrDefault(x => x.ArticleId == ArticleId).Rating = rating;
             context.SaveChanges();
 
         }
 
         public void Assignment(Article newArticle)
         {
-            this.ArticleId = newArticle.ArticleId;
-            this.Description = newArticle.Description;
-            this.Rating = newArticle.Rating;
-            this.Text = newArticle.Text;
-            this.Title = newArticle.Title;
-            this.CreateDate = newArticle.CreateDate;
+            ArticleId = newArticle.ArticleId;
+            Description = newArticle.Description;
+            Rating = newArticle.Rating;
+            Text = newArticle.Text;
+            Title = newArticle.Title;
+            CreateDate = newArticle.CreateDate;
         }
 
 

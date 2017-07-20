@@ -5,11 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Title</h2><br />
+<div class="blog-post">
+    <h2 class="blog-post-title">@Model.Title</h2>
+    <p class="blog-post-meta">@Model.CreateDate</p>
 
-@Model.Text <br />
+    <p>@Model.Text</p>
+
+</div>
 
 
-@Html.ActionLink("Изменить", "ModifiArticle", "Article", new { id = Model.ArticleId}, null);
 
 

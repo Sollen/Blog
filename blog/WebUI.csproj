@@ -125,17 +125,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\blog.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\docs.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\Script.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -163,6 +164,10 @@
     <Compile Include="Migrations\201707181947107_AddCreateDate.Designer.cs">
       <DependentUpon>201707181947107_AddCreateDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707202303128_123.cs" />
+    <Compile Include="Migrations\201707202303128_123.Designer.cs">
+      <DependentUpon>201707202303128_123.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleComment.cs" />
@@ -181,7 +186,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Article\AddArticle.cshtml" />
     <Content Include="Views\Article\Modifiarticle.cshtml" />
     <Content Include="Views\Home\Single.cshtml" />
@@ -203,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707181947107_AddCreateDate.resx">
       <DependentUpon>201707181947107_AddCreateDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707202303128_123.resx">
+      <DependentUpon>201707202303128_123.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

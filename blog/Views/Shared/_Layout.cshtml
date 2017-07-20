@@ -4,27 +4,77 @@
     
    
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="~/Scripts/Script.js"></script>
-
+    
+    <link href="~/Content/blog.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
    
 </head>
 <body>
+
+<!-->Menu</!-->
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+            <a class="blog-nav-item active" href="#">Главная</a>
+            <a class="blog-nav-item" href="#">Создать статью</a>
+        </nav>
+    </div>
+</div>
     
 
-    <div class="container body-content">
-        
-        
-        @RenderBody()
-        
+
+<div class="container">
+
+    <!--Header-->
+    <div class="header">
+        @RenderSection("Header", false)
     </div>
 
-    <br />
-    <br />
-    @Html.ActionLink("Добавление статьи", "AddArticle", "Article")
-    <br />
-    <br />
-    @Html.ActionLink("Главная", "Index", "Home");
+
+    <div class="row">
+
+        <!--Blog Main-->
+        <div class="col-sm-8 blog-main">
+
+            @RenderBody()
+
+        </div>
+
+        <!--Blog Sidebar-->
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+
+            @RenderSection("Sidebar", false)
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!--Footer-->
+<div class="blog-footer">
+    
+    @RenderSection("Footer", false)
+
+</div>
+
+
+
+
+
+
+
+    
+    
+<script src="~/Scripts/docs.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    
 
     
 </body>

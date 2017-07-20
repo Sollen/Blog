@@ -1,26 +1,32 @@
 ﻿@using WebUI.Models
-@model IQueryable<Article>
+@model IEnumerable<Article>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
 
 
-@foreach(var article in Model)
-{
-    <p>@article.Title</p><br />
-    
-    @Html.ActionLink("Посмотреть", "Single", "Home", new { id = article.ArticleId }, null)
-    <br />
-    
-    @Html.ActionLink("Изменить", "ModifiArticle", "Article", new { id = article.ArticleId }, null)
+
+@foreach(var article in Model){
+    <div class="blog-post">
+
+        <h2 class="blog-post-title">@article.Title</h2>
+        <p class="blog-post-meta">@article.CreateDate</p>
+        <p>@article.Description</p>
+
+    </div>
+
 }
 
 
 <br />
-@Html.ActionLink("Вперёд", "Index", "Home", new { id = ViewBag.Page + 1}, null) <br />
-@Html.ActionLink("Назад", "Index", "Home", new { id = ViewBag.Page - 1 }, null)<br />
+
+
+@section Header{
+<h1 class="blog-title"> Заголовок блога</h1>
+<p class="lead blog-description">Описание блога</p>
+}
+
 
