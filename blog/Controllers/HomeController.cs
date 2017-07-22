@@ -24,11 +24,11 @@ namespace WebUI.Controllers
 
         public ViewResult Index(int id = 1)
         {          
-            ViewBag.page =id;
-
             
-                        
-            return View(ArticleOnPage(CheckId(id))); 
+            ViewBag.CountPage = (Context.Articles.Count() / 3) +1;
+            id = CheckId(id);
+            ViewBag.page = id;
+            return View(ArticleOnPage(id)); 
         }
 
         public ViewResult Single(int id)

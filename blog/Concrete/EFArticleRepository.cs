@@ -6,7 +6,7 @@ namespace WebUI.Concrete
 {
     public class EfArticleRepository : IArticleRepository
     {
-        EfdbContext _context = new EfdbContext();
+        readonly EfdbContext _context = new EfdbContext();
 
         public IEnumerable<Article> Articles
         {

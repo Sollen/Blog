@@ -8,6 +8,7 @@
     <link href="~/Content/blog.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    
    
 </head>
 <body>
@@ -59,7 +60,14 @@
 <!--Footer-->
 <div class="blog-footer">
     
-    @RenderSection("Footer", false)
+    @if (IsSectionDefined("Footer"))
+    {
+        @RenderSection("Footer")
+    }
+    else
+    {
+        <p>Содержание элемента footer по умолчанию.</p>
+    }
 
 </div>
 
@@ -74,6 +82,7 @@
 <script src="~/Scripts/docs.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/Script.js"></script>
     
 
     
